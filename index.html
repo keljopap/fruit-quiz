@@ -1,0 +1,386 @@
+<head>
+<!-- begin quiz script -->
+    <script>
+        function finish() {
+            var ext = '.html';
+            var results = new Array("none","watermelon","lemon","honeydew","cantaloupe","pomegranate","grape","strawberry","yuzu","dragonfruit","pineapple");
+            var nums = new Array(11);
+            for(var i = 0; i < nums.length; i++) nums[i] = 0;
+            for(var i = 1; i <= 10; i++) {
+                var q = document.forms['quiz'].elements['question_'+i];
+                if(q[0].type=='checkbox') {
+                    var n = 0;
+                }
+                for(var j = 0; j < q.length; j++) {
+                    if(q[j].checked) {
+                        var a = q[j].value.split(',');
+                        for(var k = 0; k < a.length; k++) {
+                            nums[a[k]]++;
+                        }
+                        if(q[j].type=='radio') break;
+                        else n++;
+                    }
+                    if(j == q.length-1&&q[j].type=='radio') {nums[0]++;}
+                }
+                if(q[0].type=='checkbox'&&((document.forms['quiz'].elements['question_'+i+'_min']&&n<document.forms['quiz'].elements['question_'+i+'_min'].value)||(document.forms['quiz'].elements['question_'+i+'_max']&&n>document.forms['quiz'].elements['question_'+i+'_max'].value))) nums[0]++;
+            }
+            var j = new Array('0');
+            for (i in nums) if(nums[i]>nums[j[0]]){j=new Array(''+i);} else if(nums[i]==nums[j[0]])j[j.length] = i;
+            //var o = '';for(var i in results)o+=results[i]+'='+nums[i]+'\n';
+            //alert(o);
+            if(nums[0]!=0) {
+                alert('You missed or incorrectly answered '+nums[0]+' questions!');
+            }
+            else if(j[0]==0) {
+                alert('No result could be determined.');
+            }
+            else {
+                location = results[j[0]]+ext;
+            }
+        }
+    </script>
+    <!-- end quiz script -->          
+</head>
+
+<body>
+<!-- begin quiz html -->
+<form name="quiz" action="javascript:finish();">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td width="34%">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <strong>how do you sit when you eat</strong> 
+    </font>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_1" type="radio" value="3,5,9"> cross legged
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_1" type="radio" value="6,7,10"> i stand and look down at my fellow diners
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_1" type="radio" value="3,4"> criss cross applesauce
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_1" type="radio" value="1,2,8"> i've never thought about it
+    </font>
+    </td>
+    </tr>
+    </table>
+    <br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td width="34%">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <strong>how do you walk when you have to pee</strong> 
+    </font>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_2" type="radio" value="1,2,10"> as fast as possible
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_2" type="radio" value="4,5,9"> as slow as possible
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_2" type="radio" value="6,7,9"> i do a little dance
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_2" type="radio" value="3,8"> i waddle
+    </font>
+    </td>
+    </tr>
+    </table>
+    <br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td width="34%">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <strong>which position do you sleep in</strong> 
+    </font>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_3" type="radio" value="1,3,6,7,10"> side
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_3" type="radio" value="9,10"> face up
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_3" type="radio" value="3,4"> face down
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_3" type="radio" value="2,8"> sitting up
+    </font>
+    </td>
+    </tr>
+    </table>
+    <br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td width="34%">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <strong>how do you pose in a photo</strong> 
+    </font>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_4" type="radio" value="1,3,4"> smile and wave
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_4" type="radio" value="5,7,9"> sorority squat
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_4" type="radio" value="6,10"> something lewd
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_4" type="radio" value="2,8"> closing my eyes and wincing
+    </font>
+    </td>
+    </tr>
+    </table>
+    <br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td width="34%">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <strong>how do you act at concerts</strong> 
+    </font>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_5" type="radio" value="1,3,4,7"> swaying back and forth
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_5" type="radio" value="6"> starting the mosh pit 
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_5" type="radio" value="5,9"> panicking in the corner
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_5" type="radio" value="2,8,10"> showing off my moves
+    </font>
+    </td>
+    </tr>
+    </table>
+    <br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td width="34%">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <strong>how do you eat a kitkat</strong> 
+    </font>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_6" type="radio" value="1,7,9"> the normal way
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_6" type="radio" value="6,7"> break it in halves continuously
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_6" type="radio" value="9,10"> nibble the sides off
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_6" type="radio" value="3,4"> horizontally
+    </font>
+    </td>
+    </tr>
+    </table>
+    <br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td width="34%">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <strong>how do you act at a botanical garden</strong> 
+    </font>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_7" type="radio" value="1,6"> solemn
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_7" type="radio" value="2,7"> like a golden retriever
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_7" type="radio" value="3,4,9,10"> jaded
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_7" type="radio" value="5,8"> chatty, just breeze through it
+    </font>
+    </td>
+    </tr>
+    </table>
+    <br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td width="34%">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <strong>are you capable of meditating</strong> 
+    </font>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_8" type="radio" value="1,3,5"> yes
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_8" type="radio" value="2,4,6,7,10"> no
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_8" type="radio" value="8,9"> sometimes
+    </font>
+    </td>
+    </tr>
+    </table>
+    <br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td width="34%">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <strong>how well do you drive?</strong> 
+    </font>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_9" type="radio" value="3,4"> poorly / don't know how
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_9" type="radio" value="2,8,9,10"> aggressively
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_9" type="radio" value="6,7"> passively
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_9" type="radio" value="1,5"> inconsistently
+    </font>
+    </td>
+    </tr>
+    </table>
+    <br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td width="34%">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <strong>how do you greet a friend of a friend</strong> 
+    </font>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_10" type="radio" value="3,4"> shyly - no eye contact until prompted
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_10" type="radio" value="6,10"> offer hug initially but switch to handshake / fist bump
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_10" type="radio" value="1,2,7,9"> offer them a shot
+    </font>
+    </td>
+    </tr><tr>
+    <td>
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <input name="question_10" type="radio" value="2,8"> stare and giggle awkwardly
+    </font>
+    </td>
+    </tr>
+    </table>
+    <br /> <INPUT TYPE="submit" value="Finish">
+     <INPUT TYPE="reset" value="Reset">
+    </form>
+    <!-- end quiz html -->          
+</body>
